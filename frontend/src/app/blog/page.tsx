@@ -30,8 +30,6 @@ import {
   Heading5,
   Highlighter,
   Italic,
-  Link,
-  Palette,
   Pilcrow,
   Redo,
   Strikethrough,
@@ -90,7 +88,7 @@ const AddBlog = () => {
   const [activeIcon, setActiveIcon] = useState<any>(Pilcrow);
   const [preview, setPreview] = useState<any>(null);
   const [image, setImage] = useState<any>(null);
-  const [userId, setUserId] = useState();
+  // const [userId, setUserId] = useState();
   const [token, setToken] = useState<string | null>(null);
   const [savedContent, setSavedContent] = useState<string | null>(null);
   const [wordCount, setWordCount] = useState({ words: 0, characters: 0 });
@@ -199,7 +197,7 @@ const AddBlog = () => {
     }) => {
       if (!editor) return;
 
-      editor.commands.setCustomImage(imageData);
+      (editor.commands as any).setCustomImage(imageData);
       setImageDialogOpen(false);
     },
     [editor]

@@ -7,7 +7,7 @@ type HeroComponentRef = {
 
 export default function HeroComponent({ prodRef }: HeroComponentRef) {
   return (
-    <div className="h-[100vh] bg-[url('/hero-image-og.jpeg')] bg-cover bg-center bg-no-repeat text-white flex items-center justify-center mx-auto">
+    <div className="h-[75vh] bg-[url('/output.jpg')] bg-cover bg-center bg-no-repeat text-white flex items-center justify-center mx-auto">
       <div className="flex items-center justify-center h-full flex-col gap-5">
         <h1 className="text-2xl md:text-4xl font-bold text-center text-balance">
           we power & support scientific innovation

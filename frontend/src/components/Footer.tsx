@@ -54,7 +54,7 @@ export default function Footer() {
         </div>
 
         {/* Right: Site Map + Legal */}
-        <div className="grid grid-cols-3 gap-20 text-sm">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-20 text-sm">
           {/* Site Map */}
           <div className="flex flex-col gap-2">
             <h2 className="font-semibold mb-2">Site Map</h2>
