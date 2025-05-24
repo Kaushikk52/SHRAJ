@@ -2,7 +2,7 @@
 
 import HeroComponent from "@/components/HeroComponent";
 import Products from "@/components/Products";
-import { carouselData, featuresData } from "@/constants/constant";
+import { featuresData } from "@/constants/constant";
 import { useRef } from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
 
