@@ -40,9 +40,11 @@ export default function Navbar() {
               ))}
             </div>
           </div>
-          <button className="border bg-[#2E2F91] hidden md:block hover:bg-blue-600 transition duration-300 py-1 px-3 md:py-2 md:px-5 rounded-full text-white font-semibold cursor-pointer">
-            Contact Us
-          </button>
+          <Link href={"/contact"}>
+            <button className="border bg-[#2E2F91] hidden md:block hover:bg-blue-600 transition duration-300 py-1 px-3 md:py-2 md:px-5 rounded-full text-white font-semibold cursor-pointer">
+              Contact Us
+            </button>
+          </Link>
           <div className="block md:hidden">
             <div
               onClick={() => setOpenAuth(true)}

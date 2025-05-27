@@ -692,7 +692,7 @@ const AddBlog = () => {
               <h1>{wordCount.words} words</h1>•
               <h1>{wordCount.characters} characters</h1>
             </div>
-            <div className="w-full flex flex-col items-center justify-start py-2 px-2 space-x-1 border-2 rounded">
+            <div className="w-full flex flex-col items-center justify-start py-2 px-2 space-x-1 border-2 rounded overflow-x-scroll">
               <div className="w-full flex items-center justify-start py-2 px-2 space-x-1">
                 <button
                   data-tooltip-id="bold-tooltip"
