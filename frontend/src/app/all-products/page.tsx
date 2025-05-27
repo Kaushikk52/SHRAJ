@@ -65,7 +65,7 @@ export default function ProductsPage() {
 
         {/* Product Grid */}
         <ScrollArea className="h-screen">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 flex-1 relative">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 flex-1 relative p-2">
             {filteredProducts.map((product) => (
               <Link href={`/all-products/${product.id}`} key={product.id}>
                 <div className="bg-white rounded-xl shadow hover:shadow-md transition p-6 flex flex-col items-start cursor-pointer">
