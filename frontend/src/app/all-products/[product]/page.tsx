@@ -56,11 +56,11 @@ export default function Product() {
 
   return (
     <>
-      <div className="grid grid-cols-[45%_55%] max-w-7xl mx-auto gap-20 items-center justify-center mt-20">
+      <div className="grid grid-cols-1 lg:grid-cols-[45%_55%] max-w-7xl mx-auto gap-20 items-center justify-center mt-20">
         <div>
           <ProductImageZoom images={productDetail?.images || [""]} />
         </div>
-        <div className="flex flex-col items-start gap-10">
+        <div className="flex flex-col items-start gap-10 px-4 md:px-0">
           <h1 className="text-4xl font-nunito font-semibold">
             {productDetail?.name}
           </h1>

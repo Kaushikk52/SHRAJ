@@ -14,7 +14,7 @@ export default function Navbar() {
   const [openAuth, setOpenAuth] = useState(false);
 
   return (
-    <div className="py-2 w-full">
+    <div className="p-2 w-full">
       <div
         className={`flex items-center justify-between max-w-7xl mx-auto py-5`}
       >
@@ -40,9 +40,17 @@ export default function Navbar() {
               ))}
             </div>
           </div>
-          <button className="border bg-[#2E2F91] hover:bg-blue-600 transition duration-300 py-1 px-3 md:py-2 md:px-5 rounded-full text-white font-semibold cursor-pointer">
+          <button className="border bg-[#2E2F91] hidden md:block hover:bg-blue-600 transition duration-300 py-1 px-3 md:py-2 md:px-5 rounded-full text-white font-semibold cursor-pointer">
             Contact Us
           </button>
+          <div className="block md:hidden">
+            <div
+              onClick={() => setOpenAuth(true)}
+              className="cursor-pointer text-end flex items-center gap-2"
+            >
+              <LucideUser /> <span>Sign In</span>
+            </div>
+          </div>
           <div
             className="block md:hidden"
             onClick={() => setOpenMobileSidebar(true)}
@@ -54,11 +62,13 @@ export default function Navbar() {
             setIsSidebarOpen={setOpenMobileSidebar}
           />
         </div>
-        <div
-          onClick={() => setOpenAuth(true)}
-          className="cursor-pointer text-end flex items-center gap-2"
-        >
-          <LucideUser /> <span>Sign In</span>
+        <div className="hidden md:block">
+          <div
+            onClick={() => setOpenAuth(true)}
+            className="cursor-pointer text-end flex items-center gap-2"
+          >
+            <LucideUser /> <span>Sign In</span>
+          </div>
         </div>
       </div>
       <AuthPopup authOpen={openAuth} setAuthOpen={setOpenAuth} />

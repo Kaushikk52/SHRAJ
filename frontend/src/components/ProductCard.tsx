@@ -10,7 +10,7 @@ type ProductCardProps = {
 const ProductCard = ({ name, image, id }: ProductCardProps) => {
   return (
     <Link href={`/all-products/${id}`}>
-      <div className="relative w-[150px] md:w-[300px] cursor-pointer">
+      <div className="relative w-[150px] md:w-[200px] cursor-pointer">
         <div className="relative w-full h-[180px] md:h-[370px]">
           <Image src={image} alt={name} fill className="object-contain" />
         </div>

@@ -28,7 +28,7 @@ export default function MobileSidebar({
       {/* SIDEBAR */}
       <div
         className={clsx(
-          "fixed top-0 right-0 h-full w-[60%] bg-white shadow-lg transition-transform duration-600 z-50 flex flex-col",
+          "fixed top-0 right-0 h-full w-[70%] bg-white shadow-lg transition-transform duration-600 z-50 flex flex-col gap-10",
           isSidebarOpen ? "translate-x-0" : "translate-x-full"
         )}
         onClick={(e) => e.stopPropagation()}
@@ -39,7 +39,7 @@ export default function MobileSidebar({
           </button>
         </div>
 
-        <div className="flex flex-col flex-1 px-4">
+        <div className="flex flex-col flex-1 px-4 gap-10">
           <div className="flex flex-col gap-8">
             {navlinks.map((item) => (
               <div key={item.tag} className="flex flex-col">
@@ -51,6 +51,9 @@ export default function MobileSidebar({
                 </Link>
               </div>
             ))}
+            <button className="text-sm uppercase font-medium hover:font-semibold cursor-pointer text-start">
+              Contact Us
+            </button>
           </div>
         </div>
       </div>

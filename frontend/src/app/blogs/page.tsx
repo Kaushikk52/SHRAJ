@@ -13,7 +13,19 @@ export default function BlogsPage() {
             Our most recent articles
           </h1>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white rounded-xl shadow overflow-hidden">
-            <div className="flex flex-col gap-6 justify-center p-6 md:px-10 md:py-20">
+            {/* IMAGE FIRST on mobile, SECOND on desktop */}
+            <div className="relative w-full h-64 md:h-auto order-1 md:order-2">
+              <Image
+                src={heroBlog.img}
+                alt={`${heroBlog.title}-image`}
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
+
+            {/* TEXT SECOND on mobile, FIRST on desktop */}
+            <div className="flex flex-col gap-6 justify-center p-6 md:px-10 md:py-20 order-2 md:order-1">
               <span className="bg-[#F4F7FB] rounded-full w-fit text-sm font-manrope">
                 {heroBlog.tag}
               </span>
@@ -28,15 +40,6 @@ export default function BlogsPage() {
               <span className="self-end text-sm text-gray-500">
                 ○ {heroBlog.time}
               </span>
-            </div>
-            <div className="relative w-full h-64 md:h-auto">
-              <Image
-                src={heroBlog.img}
-                alt={`${heroBlog.title}-image`}
-                fill
-                className="object-cover"
-                priority
-              />
             </div>
           </div>
         </div>

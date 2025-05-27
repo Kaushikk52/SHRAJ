@@ -47,7 +47,7 @@ export default function Home() {
             </p>
             <div>
               {/* Desktop view (md and up) */}
-              <div className="hidden md:flex flex-col md:flex-row items-start md:items-center justify-between gap-5 mx-auto max-w-5xl">
+              <div className="hidden lg:flex flex-col md:flex-row items-start md:items-center justify-between gap-5 mx-auto max-w-5xl">
                 {featuresData.map((data, index) => (
                   <div
                     key={data.tag}
@@ -74,7 +74,7 @@ export default function Home() {
               </div>
 
               {/* Mobile view only (below md) */}
-              <div className="block md:hidden px-4">
+              <div className="block lg:hidden px-4">
                 <Swiper
                   spaceBetween={20}
                   slidesPerView={1}
@@ -107,13 +107,13 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="w-full max-w-7xl flex flex-col mx-auto mb-10">
-          <div className="flex items-center justify-between">
-            <h1 className="text-2xl md:text-4xl font-semibold">
+        <div className="w-full max-w-7xl flex flex-col mx-auto mb-10 PX-4">
+          <div className="flex items-center justify-between px-2 lg:px-0">
+            <h1 className="text-lg md:text-2xl lg:text-4xl font-semibold">
               Some Of Our Products
             </h1>
             <Link href={"/all-products"}>
-              <button className="bg-[#2E2F91] hover:bg-blue-600 transition duration-300 py-2 px-4 rounded-full flex items-center gap-2 text-md text-white cursor-pointer font-semibold">
+              <button className="bg-[#2E2F91] hover:bg-blue-600 transition duration-300 py-1 md:py-2 px-4 rounded-full flex items-center gap-2 text-md text-white cursor-pointer font-semibold">
                 view all
                 <span>
                   <FaArrowRightLong size={14} />

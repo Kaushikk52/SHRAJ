@@ -1,18 +1,37 @@
 import { products } from "@/constants/constant";
 import ProductCard from "./ProductCard";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
 
 const Products = () => {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mx-auto">
+    <Swiper
+      spaceBetween={20}
+      loop={true}
+      autoplay={{ delay: 3000, disableOnInteraction: false }}
+      modules={[Autoplay]}
+      breakpoints={{
+        0: {
+          slidesPerView: 2,
+        },
+        768: {
+          slidesPerView: 3,
+        },
+        1024: {
+          slidesPerView: 4,
+        },
+      }}
+    >
       {products.slice(0, 4).map((product) => (
-        <ProductCard
-          key={product.id}
-          id={product.id}
-          name={product.name}
-          image={product.image}
-        />
+        <SwiperSlide key={product.id}>
+          <ProductCard
+            id={product.id}
+            name={product.name}
+            image={product.image}
+          />
+        </SwiperSlide>
       ))}
-    </div>
+    </Swiper>
   );
 };
 

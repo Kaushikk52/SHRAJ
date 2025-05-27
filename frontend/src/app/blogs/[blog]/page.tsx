@@ -7,9 +7,9 @@ export default function BlogDetailPage() {
   const blog = BlogData[0];
   return (
     <div className="bg-[#F4F7FB] min-h-screen px-4 py-10">
-      <div className="max-w-7xl mx-auto pt-20 flex flex-col gap-8 text-[#29343d] font-manrope">
+      <div className="max-w-7xl mx-auto pt-5 md:pt-20 flex flex-col gap-8 text-[#29343d] font-manrope">
         <div className="flex flex-col gap-10 items-center mx-auto">
-          <div className="text-center flex items-center justify-center gap-5 uppercase">
+          <div className="text-center flex items-center justify-center gap-2 md:gap-5 uppercase">
             <Link href={"/"}>
               <span className="hover:text-purple-800 font-manrope text-slate-500 cursor-pointer font-semibold">
                 Home
@@ -27,7 +27,7 @@ export default function BlogDetailPage() {
             </span>
           </div>
           <div className="text-center md:w-[80%] mx-auto">
-            <h1 className="text-5xl font-manrope font-semibold text-[#29343d]">
+            <h1 className="text-xl md:text-3xl lg:text-5xl font-manrope font-semibold text-[#29343d]">
               {blog.title}
             </h1>
           </div>
@@ -45,9 +45,9 @@ export default function BlogDetailPage() {
             />
           </div>
         </div>
-        <div className="grid grid-cols-[70%_30%] gap-5">
-          <div className="bg-white h-screen rounded-xl"></div>
-          <div className="bg-white h-64 rounded-xl"></div>
+        <div className="grid grid-cols-1 lg:grid-cols-[70%_30%] gap-5">
+          <div className="bg-white order-2 md:order-1 h-screen rounded-xl"></div>
+          <div className="bg-white h-64 order-1 md:order-2 rounded-xl"></div>
         </div>
       </div>
     </div>
