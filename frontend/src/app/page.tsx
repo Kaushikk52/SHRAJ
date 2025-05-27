@@ -113,7 +113,7 @@ export default function Home() {
               Some Of Our Products
             </h1>
             <Link href={"/all-products"}>
-              <button className="bg-blue-400 py-2 px-4 rounded-full flex items-center gap-2 text-md text-white cursor-pointer font-semibold">
+              <button className="bg-[#2E2F91] hover:bg-blue-600 transition duration-300 py-2 px-4 rounded-full flex items-center gap-2 text-md text-white cursor-pointer font-semibold">
                 view all
                 <span>
                   <FaArrowRightLong size={14} />

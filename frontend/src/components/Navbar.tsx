@@ -7,6 +7,7 @@ import MobileSidebar from "./MobileSidebar";
 import Link from "next/link";
 import Image from "next/image";
 import AuthPopup from "./auth/AuthPopup";
+import { LucideUser } from "lucide-react";
 
 export default function Navbar() {
   const [openMobileSidebar, setOpenMobileSidebar] = useState(false);
@@ -17,9 +18,16 @@ export default function Navbar() {
       <div
         className={`flex items-center justify-between max-w-7xl mx-auto py-5`}
       >
-        <div>
-          <Image src={"/logo.png"} alt="SHRAJ-logo" height={150} width={150} />
-        </div>
+        <Link href={"/"}>
+          <div>
+            <Image
+              src={"/logo.png"}
+              alt="SHRAJ-logo"
+              height={150}
+              width={150}
+            />
+          </div>
+        </Link>
         <div className="flex items-center gap-5">
           <div className="hidden md:block">
             <div className="flex items-center gap-8">
@@ -48,9 +56,9 @@ export default function Navbar() {
         </div>
         <div
           onClick={() => setOpenAuth(true)}
-          className="cursor-pointer text-end"
+          className="cursor-pointer text-end flex items-center gap-2"
         >
-          Sign In
+          <LucideUser /> <span>Sign In</span>
         </div>
       </div>
       <AuthPopup authOpen={openAuth} setAuthOpen={setOpenAuth} />

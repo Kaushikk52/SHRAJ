@@ -2,6 +2,7 @@
 
 import { products } from "@/constants/constant";
 import Image from "next/image";
+import Link from "next/link";
 import { SetStateAction, useEffect, useState } from "react";
 
 export default function ProductsPage() {
@@ -43,20 +44,20 @@ export default function ProductsPage() {
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Sidebar Filter */}
         <div className="w-full lg:w-64 border-r pr-4">
-          <div className="mb-6">
+          {/* <div className="mb-6">
             <h2 className="font-semibold text-lg mb-2">Brand</h2>
-            {brands.map((brand) => (
-              <div key={brand} className="flex items-center mb-2">
+            {brands.map((brand, index) => (
+              <div key={index} className="flex items-center mb-2">
                 <input type="checkbox" id={brand} className="mr-2" />
                 <label htmlFor={brand}>{brand}</label>
               </div>
             ))}
-          </div>
+          </div> */}
 
           <div>
             <h2 className="font-semibold text-lg mb-2">Equipment Type</h2>
-            {impCategories?.map((type) => (
-              <div key={type} className="flex items-center mb-2">
+            {impCategories?.map((type, index) => (
+              <div key={index} className="flex items-center mb-2">
                 <input
                   type="checkbox"
                   id={type}
@@ -74,44 +75,35 @@ export default function ProductsPage() {
         {/* Product Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 flex-1 relative">
           {filteredProducts.map((product) => (
-            <div
-              key={product.id}
-              className="bg-white rounded-xl shadow hover:shadow-md transition p-6 flex flex-col items-start cursor-pointer"
-            >
-              {/* Image */}
-              <div className="relative w-full h-44 mb-4">
-                <Image
-                  src={product.image}
-                  alt={product.name}
-                  layout="fill"
-                  objectFit="contain"
-                  className="rounded-md"
-                />
+            <Link href={`/all-products/${product.id}`} key={product.id}>
+              <div className="bg-white rounded-xl shadow hover:shadow-md transition p-6 flex flex-col items-start cursor-pointer">
+                {/* Image */}
+                <div className="relative w-full h-44 mb-4">
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    layout="fill"
+                    objectFit="contain"
+                    className="rounded-md"
+                  />
+                </div>
+
+                {/* Type Badge */}
+                <span className="bg-blue-900 text-white text-xs font-semibold px-3 py-1 rounded-full">
+                  {product.type}
+                </span>
+
+                {/* Title */}
+                <h2 className="mt-3 text-lg font-semibold text-gray-900">
+                  {product.name}
+                </h2>
+
+                {/* Description */}
+                <p className="mt-1 text-sm text-gray-600 line-clamp-2">
+                  {product.description}
+                </p>
               </div>
-
-              {/* Type Badge */}
-              <span className="bg-blue-900 text-white text-xs font-semibold px-3 py-1 rounded-full">
-                {product.type}
-              </span>
-
-              {/* Title */}
-              <h2 className="mt-3 text-lg font-semibold text-gray-900">
-                {product.name}
-              </h2>
-
-              {/* Description */}
-              <p className="mt-1 text-sm text-gray-600 line-clamp-2">
-                {product.description}
-              </p>
-
-              {/* Link */}
-              <a
-                href="#"
-                className="mt-2 text-sm font-medium text-blue-600 hover:underline"
-              >
-                View →
-              </a>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

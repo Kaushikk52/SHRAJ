@@ -7,6 +7,7 @@ const Products = () => {
       {products.slice(0, 4).map((product) => (
         <ProductCard
           key={product.id}
+          id={product.id}
           name={product.name}
           image={product.image}
         />
