@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import { ArrowLeft, Eye, EyeOff } from "lucide-react";
 import axios from "axios";
@@ -25,10 +23,10 @@ type AuthPopupType = {
 };
 
 export default function AuthPopup({ authOpen, setAuthOpen }: AuthPopupType) {
-  //   const baseURL = import.meta.env.VITE_APP_BACKEND_BASE_URL;
+  const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
   const roles = ["ROLE_AGENT", "ROLE_RESALER", "ROLE_USER"];
 
-  //   const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("login");
   const [user, setUser] = useState({});
   const [resetStep, setResetStep] = useState("email");
@@ -92,10 +90,7 @@ export default function AuthPopup({ authOpen, setAuthOpen }: AuthPopupType) {
     try {
       console.log("Resister User : ", values);
       values.role = "ROLE_USER";
-      const response = await axios.post(
-        // `${baseURL}/v1/api/auth/register`,
-        values
-      );
+      const response = await axios.post(`${baseURL}/auth/register`,values);
       if (response.status === 201) {
         setUser(response.data.user);
         setActiveTab("login");
@@ -109,8 +104,7 @@ export default function AuthPopup({ authOpen, setAuthOpen }: AuthPopupType) {
   async function handleLogin(values: any) {
     try {
       const response = await axios.post(
-        `
-        // ${"h11"}/v1/api/auth/login`,
+        `${baseURL}/auth/login`,
         values
       );
       if (response.status === 200) {
@@ -118,7 +112,7 @@ export default function AuthPopup({ authOpen, setAuthOpen }: AuthPopupType) {
         if (!token || token !== response.data.jwtToken) {
           localStorage.setItem("token", response.data.jwtToken);
         }
-        // setIsOpen(false);
+        setIsOpen(false);
         const data = response.data;
         if (data.role === "ROLE_USER") {
           router.push("/");

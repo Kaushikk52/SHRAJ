@@ -6,9 +6,9 @@ import { HiOutlineShieldCheck } from "react-icons/hi";
 export const navlinks = [
   { tag: "Home", path: "/" },
   { tag: "About", path: "/about" },
-  { tag: "Products", path: "/all-products" },
+  { tag: "Products", path: "/products" },
   { tag: "Blog", path: "/blogs" },
-  { tag: "Write", path: "/add-blog" },
+  { tag: "Write", path: "/blogs/add" },
 ];
 
 export const products = [
