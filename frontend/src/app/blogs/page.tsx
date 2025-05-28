@@ -46,7 +46,7 @@ export default function BlogsPage() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {BlogData.map((blog, index) => (
-            <Link href={`/blogs/${blog.id}`}>
+            <Link href={`/blogs/${blog.id}`} key={index}>
               <div
                 key={index}
                 className="bg-white rounded-2xl shadow w-full h-[500px]"
