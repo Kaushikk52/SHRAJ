@@ -1,12 +1,15 @@
 "use client";
 
 import { ProductImageZoom } from "@/components/ProductImageZoom";
-import { mainFeatres, products } from "@/constants/constant";
+import { OvenOtherFeaturesType, products } from "@/constants/constant";
 import { useParams } from "next/navigation";
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
+import DescriptionComponent from "@/components/products-helper/DescriptionComponent";
+import OtherFeaturesComponent from "@/components/products-helper/OtherFeaturesComponent";
+import OptionsComponent from "@/components/products-helper/OptionsComponent";
 
 type productDetailType = {
   id: number;
@@ -16,7 +19,28 @@ type productDetailType = {
   image: string;
   images: string[];
   description: string;
+  overallDescription: string;
+  mainFeatures: string[];
+  otherFeatures: OvenOtherFeaturesType;
+  more: {
+    img: string[];
+  };
 };
+
+const options = [
+  "Custom shelves, carts + trucks made to accompany any style oven",
+  "Exhaust vent with damper",
+  "Interior door latch",
+  "Outdoor use package",
+  "Chart recorder",
+  "Door switch",
+  "Adjustable timer",
+  "Ethernet or serial bus communication",
+  "Profile temperature control with ramp and hold capability",
+  "Industrially hardened SCADA (supervisory control and data acquisition) system capable of controlling 20 ovens",
+  "Integrated PLC controls with touch screen",
+  "Class 'A' oven controls with powered exhaust systems are readily available upon request",
+];
 
 export default function Product() {
   const params = useParams();
@@ -27,6 +51,10 @@ export default function Product() {
     null
   );
 
+  const [activeTab, setActiveTab] = useState<
+    "description" | "features" | "options"
+  >("description");
+
   useEffect(() => {
     const data = products.find((product) => product.id === productId);
     setProducDetail(data || null);
@@ -34,12 +62,12 @@ export default function Product() {
 
   const otherProducts = products
     .filter((item) => item.id !== productId)
-    .slice(0, 5);
+    .slice(0, 8);
 
   const scrollLeft = () => {
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollBy({
-        left: -300, // Adjust scroll distance as needed
+        left: -300,
         behavior: "smooth",
       });
     }
@@ -48,7 +76,7 @@ export default function Product() {
   const scrollRight = () => {
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollBy({
-        left: 300, // Adjust scroll distance as needed
+        left: 300,
         behavior: "smooth",
       });
     }
@@ -56,7 +84,7 @@ export default function Product() {
 
   return (
     <>
-      <div className="grid grid-cols-1 lg:grid-cols-[45%_55%] max-w-7xl mx-auto gap-20 items-center justify-center mt-20">
+      <div className="grid grid-cols-1 lg:grid-cols-[45%_55%] max-w-7xl mx-auto gap-20 items-start justify-center mt-20">
         <div>
           <ProductImageZoom images={productDetail?.images || [""]} />
         </div>
@@ -64,27 +92,51 @@ export default function Product() {
           <h1 className="text-4xl font-nunito font-semibold">
             {productDetail?.name}
           </h1>
-          <div className="flex flex-col gap-10">
-            <h1 className="border-b pb-2">Description</h1>
-            <p className="text-sm text-slate-700">
-              <strong>Shraj</strong> {productDetail?.name} offer a range of
-              sizes and heating arrangements to meet a variety of batch heating
-              applications. Challenge us with your toughest oven applications!{" "}
-              <strong>Shraj</strong> Products is not restricted to industrial
-              oven standard model sizes and, instead, will custom build an
-              industrial oven to meet your specifications.
-            </p>
-            <div className="flex flex-col gap-5">
-              <h1 className="font-semibold text-xl">Main Features</h1>
-              <div className="flex flex-col gap-2">
-                {mainFeatres.map((feature) => (
-                  <div className="flex items-center gap-2" key={feature}>
-                    <span>•</span>{" "}
-                    <p className="text-sm w-[70%] text-slate-700">{feature}</p>
-                  </div>
-                ))}
-              </div>
+          <div className="flex flex-col gap-10 w-full">
+            <div className="border-b pb-2 flex items-center justify-between w-full">
+              <h1
+                onClick={() => setActiveTab("description")}
+                className={`cursor-pointer ${
+                  activeTab === "description" ? "text-[#0f0ff0]" : "text-black"
+                }`}
+              >
+                Description
+              </h1>
+              <h1
+                onClick={() => setActiveTab("features")}
+                className={`cursor-pointer ${
+                  activeTab === "features" ? "text-[#0f0ff0]" : "text-black"
+                }`}
+              >
+                Features
+              </h1>
+              <h1
+                onClick={() => setActiveTab("options")}
+                className={`cursor-pointer ${
+                  activeTab === "options" ? "text-[#0f0ff0]" : "text-black"
+                }`}
+              >
+                More
+              </h1>
             </div>
+
+            {activeTab === "description" && (
+              <DescriptionComponent
+                overallDescription={productDetail?.overallDescription || ""}
+                mainFeatures={productDetail?.mainFeatures || []}
+              />
+            )}
+            {activeTab === "features" && (
+              <OtherFeaturesComponent
+                otherFeatures={productDetail?.otherFeatures || {}}
+              />
+            )}
+            {activeTab === "options" &&
+              (productDetail?.type === "Industrial Ovens" ? (
+                <OptionsComponent options={options} />
+              ) : (
+                <OptionsComponent img={productDetail?.more?.img || []} />
+              ))}
           </div>
         </div>
       </div>
@@ -124,16 +176,13 @@ export default function Product() {
             ref={scrollContainerRef}
             className="flex gap-6 overflow-x-auto pb-4"
             style={{
-              scrollbarWidth: "none" /* Firefox */,
-              msOverflowStyle: "none" /* Internet Explorer 10+ */,
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
             }}
           >
             {otherProducts.map((item) => (
-              <Link href={`/all-products/${item.id}`}>
-                <div
-                  key={item.id}
-                  className="bg-white rounded-2xl p-6 hover:shadow-lg transition-shadow flex-shrink-0 w-72"
-                >
+              <Link href={`/all-products/${item.id}`} key={item.id}>
+                <div className="bg-white rounded-2xl p-6 hover:shadow-lg transition-shadow flex-shrink-0 w-72">
                   <div className="w-full h-48 relative mb-6 bg-gray-50 rounded-xl">
                     <Image
                       src={item.image}

@@ -6,12 +6,12 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import MobileSidebar from "./MobileSidebar";
 import Link from "next/link";
 import Image from "next/image";
-import AuthPopup from "./auth/AuthPopup";
-import { LucideUser } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [openMobileSidebar, setOpenMobileSidebar] = useState(false);
-  const [openAuth, setOpenAuth] = useState(false);
+
+  const path = usePathname();
 
   return (
     <div className="p-2 w-full">
@@ -33,7 +33,13 @@ export default function Navbar() {
             <div className="flex items-center gap-8">
               {navlinks.map((nav) => (
                 <Link href={nav.path} key={nav.tag}>
-                  <h1 className="text-black font-semibold cursor-pointer">
+                  <h1
+                    className={`font-semibold cursor-pointer ${
+                      path === nav.path
+                        ? "text-[#2E2F91] font-bold underline py-2"
+                        : "text-black"
+                    }`}
+                  >
                     {nav.tag}
                   </h1>
                 </Link>
@@ -45,14 +51,6 @@ export default function Navbar() {
               Contact Us
             </button>
           </Link>
-          <div className="block md:hidden">
-            <div
-              onClick={() => setOpenAuth(true)}
-              className="cursor-pointer text-end flex items-center gap-2"
-            >
-              <LucideUser /> <span>Sign In</span>
-            </div>
-          </div>
           <div
             className="block md:hidden"
             onClick={() => setOpenMobileSidebar(true)}
@@ -64,16 +62,7 @@ export default function Navbar() {
             setIsSidebarOpen={setOpenMobileSidebar}
           />
         </div>
-        <div className="hidden md:block">
-          <div
-            onClick={() => setOpenAuth(true)}
-            className="cursor-pointer text-end flex items-center gap-2"
-          >
-            <LucideUser /> <span>Sign In</span>
-          </div>
-        </div>
       </div>
-      <AuthPopup authOpen={openAuth} setAuthOpen={setOpenAuth} />
     </div>
   );
 }
